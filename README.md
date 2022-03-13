@@ -35,16 +35,40 @@ SpriteAnimator.Resume()
 ```  
   
 ### Getters
-SpriteAnimator.DefaultAnimation = Returns the default animation (index 0 on Sprite Animations List) to be played.  
-SpriteAnimator.CurrentAnimation = Returns the current animation being played.  
-SpriteAnimator.Playing = Returns true if the current animation being played.  
-SpriteAnimator.Paused = Returns true if the current animation is paused.  
-SpriteAnimator.CurrentFrame = Returns the current frame being played.  
-SpriteAnimator.IsLastFrame = Returns true if the last frame of the current animation is being played.  
+```cs
+//The default animation (index 0 on Sprite Animations List) to be played
+SpriteAnimator.DefaultAnimation
+
+//The current animation being played
+SpriteAnimator.CurrentAnimation
+
+//True if the current animation being played
+SpriteAnimator.Playing
+
+//True if the current animation is paused
+SpriteAnimator.Paused
+
+//Current frame being played
+SpriteAnimator.CurrentFrame
+
+//True if the last frame of the current animation is being played
+SpriteAnimator.IsLastFrame 
+```
   
 ### Events
-SpriteAnimator.SpriteChanged = Called every time the sprite is changed (no arguments).  
-SpriteAnimator.AnimationPlayed = Called every time a animation is played (args = SpriteAnimation).  
-SpriteAnimator.AnimationPaused = Called every time a animation is paused (args = SpriteAnimation).  
-SpriteAnimator.AnimationEnded = Called every time a animation is ended (args = SpriteAnimation).  
-SpriteAnimator.AnimationEventCalled = Called every time a Animation Event is called (args = string).  
+```cs
+//Called every time the sprite is changed (no arguments)
+public event Action SpriteChanged;
+
+//Called every time a animation is played (args = SpriteAnimation)
+public event Action<SpriteAnimation> AnimationPlayed;
+
+//Called every time a animation is paused (args = SpriteAnimation)
+public event Action<SpriteAnimation> AnimationPaused;
+
+//Called every time a animation is ended (args = SpriteAnimation)
+public event Action<SpriteAnimation> AnimationEnded;
+
+Called every time a Animation Event is called (args = string)
+public event Action<string> AnimationEventCalled;
+```
