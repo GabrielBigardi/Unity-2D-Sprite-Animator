@@ -14,6 +14,24 @@
 4 - Add the previously created Sprite Animations from your assets folder to the "Sprite Animations" list in the Sprite Animator component.  
 5 - Select if you wan't to play the animation automatically or do it by code.  
   
+## Why to use
+* Unity Animator was made for 3D games, it has a lot of unuseful interpolation settings and it's a hell to manage.
+* Unity Animator is pretty expensive for simple 2D games, more about that in the benchmark section.
+* Unity Animator is not fast to setup, you need to create animations, save it on a folder, setup transitions/parameters, try to organize the Animator window, etc...
+* Unity Animator don't give you enough control for 2D (and even 3D) games, there isn't a easy way of doing things like: checking current frame, checking which frame you are, checking if animation has ended, etc...
+* It's pretty easy to upgrade this code to your liking.
+* 1000 other things that you probably already know if you've used Unity Animator for 2D games for a long time.
+  
+## Benchmarking
+For the benchmark i did a simple test on a empty URP project with 2D Rendering/Lighting and 10.000 2D characters playing a 5-frames-long idle animation.
+### Unity Default Animator
+Animator disabled: 130 FPS.
+Animator enabled: 15 FPS.
+  
+## Sprite Animator
+Animator disabled: 130 FPS.
+Animator enabled: 85 FPS.
+  
 ## Useful codes
 ### SpriteAnimator Functions
 ```cs
