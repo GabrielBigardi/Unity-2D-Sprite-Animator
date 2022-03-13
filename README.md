@@ -94,3 +94,11 @@ public event Action<SpriteAnimation> AnimationEnded;
 // Called every time a Animation Event is called
 public event Action<string> AnimationEventCalled;
 ```
+  
+## How do i contribute to this project?
+[Click here](CONTRIBUTING.md).
+  
+## Contact
+**Discord**: *Gabriel Bigardi#2292*  
+**Twitter**: *@BigardiGabriel*  
+**Email**: *gabrielbigardi@hotmail.com*  
