@@ -27,7 +27,7 @@ namespace GabrielBigardi.SpriteAnimator
         public event Action SpriteChanged;
         public event Action<SpriteAnimation> AnimationPlayed;
         public event Action<SpriteAnimation> AnimationPaused;
-        public event Action AnimationEnded;
+        public event Action<SpriteAnimation> AnimationEnded;
         public event Action<string> AnimationEventCalled;
 
         private void Awake()
@@ -59,7 +59,7 @@ namespace GabrielBigardi.SpriteAnimator
                     {
                         if (triggerAnimationEndedEvent)
                         {
-                            AnimationEnded?.Invoke();
+                            AnimationEnded?.Invoke(CurrentAnimation);
 
                             if (CurrentAnimation.SpriteAnimationType != SpriteAnimationType.Looping) return;
                         }
@@ -100,9 +100,18 @@ namespace GabrielBigardi.SpriteAnimator
 
         public void PlayIfNotPlaying(string name)
         {
-            if(CurrentAnimation.name != name)
+            PlayIfNotPlaying(GetAnimationByName(name));
+        }
+
+        public void PlayIfNotPlaying(SpriteAnimation animation)
+        {
+            if (CurrentAnimation.name != name)
             {
-                Play(name);
+                _state = SpriteAnimationState.Playing;
+                _spriteAnimationHelper.ChangeAnimation(animation);
+                AnimationPlayed?.Invoke(animation);
+
+                triggerAnimationEndedEvent = false;
             }
         }
 

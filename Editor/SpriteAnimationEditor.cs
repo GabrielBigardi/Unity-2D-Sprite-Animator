@@ -58,12 +58,12 @@ namespace GabrielBigardi.SpriteAnimator
 
         public override bool HasPreviewGUI()
         {
-            return HasAnimationAndFrames();
+            return HasAnimationAndFrames;
         }
 
         public override bool RequiresConstantRepaint()
         {
-            return HasAnimationAndFrames();
+            return HasAnimationAndFrames;
         }
 
         public override void OnPreviewGUI(Rect r, GUIStyle background)
@@ -112,14 +112,11 @@ namespace GabrielBigardi.SpriteAnimator
             EditorGUI.LabelField(rect, "Frames List");
         }
 
-        private bool HasAnimationAndFrames()
-        {
-            return SelectedSpriteAnimation != null && SelectedSpriteAnimation.Frames.Count > 0;
-        }
+        private bool HasAnimationAndFrames => SelectedSpriteAnimation != null && SelectedSpriteAnimation.Frames != null && SelectedSpriteAnimation.Frames.Count > 0;
 
         private void OnUpdate()
         {
-            if (SelectedSpriteAnimation != null && SelectedSpriteAnimation.Frames.Count > 0)
+            if (HasAnimationAndFrames)
             {
                 float deltaTime = (float)EditorApplication.timeSinceStartup - timeTracker;
                 timeTracker += deltaTime;
