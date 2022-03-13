@@ -18,19 +18,19 @@
 ### SpriteAnimator Functions
 ```cs
 // Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
-public void Play()
-public void Play(string animationName)
-public void Play(SpriteAnimation animation)
+public void Play() {}
+public void Play(string animationName) {}
+public void Play(SpriteAnimation animation) {}
 
 // Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class
-public void PlayIfNotPlaying(string animationName)
-public void PlayIfNotPlaying(SpriteAnimation animation)
+public void PlayIfNotPlaying(string animationName) {}
+public void PlayIfNotPlaying(SpriteAnimation animation) {}
 
 // Pause the current animation
-public void Pause()
+public void Pause() {}
 
 // Resumes the current animation.
-public void Resume() 
+public void Resume() {}
 ```  
   
 ### SpriteAnimator Getters
