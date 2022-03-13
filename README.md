@@ -15,60 +15,60 @@
 5 - Select if you wan't to play the animation automatically or do it by code.  
   
 ## Useful codes
-### Functions
+### SpriteAnimator Functions
 ```cs
-//Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
+// Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
 SpriteAnimator.Play()
 SpriteAnimator.Play(string animationName)
 SpriteAnimator.Play(SpriteAnimation animation)
 
-//Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class
+// Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class
 SpriteAnimator.PlayIfNotPlaying()
 SpriteAnimator.PlayIfNotPlaying(string animationName)
 SpriteAnimator.PlayIfNotPlaying(SpriteAnimation animation)
 
-//Pause the current animation
+// Pause the current animation
 SpriteAnimator.Pause()
 
-//Resumes the current animation.
+// Resumes the current animation.
 SpriteAnimator.Resume() 
 ```  
   
-### Getters
+### SpriteAnimator Getters
 ```cs
-//The default animation (index 0 on Sprite Animations List) to be played
-SpriteAnimator.DefaultAnimation
+// The default animation (index 0 on Sprite Animations List) to be played
+public SpriteAnimation DefaultAnimation
 
-//The current animation being played
-SpriteAnimator.CurrentAnimation
+// The current animation being played
+public SpriteAnimation CurrentAnimation
 
-//True if the current animation being played
-SpriteAnimator.Playing
+// True if the current animation being played
+public bool Playing
 
-//True if the current animation is paused
-SpriteAnimator.Paused
+// True if the current animation is paused
+public bool Paused
 
-//Current frame being played
-SpriteAnimator.CurrentFrame
+// Current frame being played
+public int CurrentFrame
 
-//True if the last frame of the current animation is being played
-SpriteAnimator.IsLastFrame 
+// True if the last frame of the current animation is being played
+public bool IsLastFrame 
 ```
   
-### Events
+### SpriteAnimator Events
 ```cs
-//Called every time the sprite is changed (no arguments)
+// Called every time the sprite is changed
 public event Action SpriteChanged;
 
-//Called every time a animation is played (args = SpriteAnimation)
+// Called every time a animation is played
 public event Action<SpriteAnimation> AnimationPlayed;
 
-//Called every time a animation is paused (args = SpriteAnimation)
+// Called every time a animation is paused
 public event Action<SpriteAnimation> AnimationPaused;
 
-//Called every time a animation is ended (args = SpriteAnimation)
+// Called every time a animation is ended
 public event Action<SpriteAnimation> AnimationEnded;
 
-Called every time a Animation Event is called (args = string)
+// Called every time a Animation Event is called
 public event Action<string> AnimationEventCalled;
 ```
