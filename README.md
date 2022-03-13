@@ -2,10 +2,15 @@
  Performatic, simple and easy animator for 2D games
 
 ## How to install
+### Package Manager (recommended)
 1 - Open the package manager (Window > Package Manager)  
 2 - Click on the plus icon and "Add package from git URL..."  
 3 - Enter https://github.com/GabrielBigardi/2D-Sprite-Animator.git and click "Add"  
 4 - Wait until the package manager finishes installing the package and recompiling  
+   
+### Lazy way
+1 - Download this repository as ZIP or by cloning it.
+2 - Drag it into your "Assets" folder.
   
 ## How to use
 1 - Right click on your "Assets" folder > Create > Sprite Animation  
