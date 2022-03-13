@@ -28,7 +28,7 @@ For the benchmark i did a simple test on a empty URP project with 2D Rendering/L
 Animator disabled: 130 FPS.
 Animator enabled: 15 FPS.
   
-## Sprite Animator
+### Sprite Animator
 Animator disabled: 130 FPS.
 Animator enabled: 85 FPS.
   
