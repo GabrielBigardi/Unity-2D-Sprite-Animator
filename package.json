@@ -1,0 +1,19 @@
+{
+  "name": "com.gabrielbigardi.spriteanimator",
+  "version": "1.0.0",
+  "displayName": "2D Sprite Animator",
+  "description": "Performatic, simple and easy animator for 2D games",
+  "unity": "2019.3",
+  "unityRelease": "26f1",
+  "keywords": [
+    "sprite",
+    "animator",
+    "2d"
+  ],
+  "author": {
+    "name": "Gabriel Bigardi",
+    "email": "gabrielbigardi@hotmail.com",
+    "url": "https://github.com/GabrielBigardi/"
+  },
+  "type": "tool"
+}
