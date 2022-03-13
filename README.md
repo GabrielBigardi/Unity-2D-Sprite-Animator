@@ -18,41 +18,40 @@
 ### SpriteAnimator Functions
 ```cs
 // Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
-SpriteAnimator.Play()
-SpriteAnimator.Play(string animationName)
-SpriteAnimator.Play(SpriteAnimation animation)
+public void Play()
+public void Play(string animationName)
+public void Play(SpriteAnimation animation)
 
 // Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class
-SpriteAnimator.PlayIfNotPlaying()
-SpriteAnimator.PlayIfNotPlaying(string animationName)
-SpriteAnimator.PlayIfNotPlaying(SpriteAnimation animation)
+public void PlayIfNotPlaying(string animationName)
+public void PlayIfNotPlaying(SpriteAnimation animation)
 
 // Pause the current animation
-SpriteAnimator.Pause()
+public void Pause()
 
 // Resumes the current animation.
-SpriteAnimator.Resume() 
+public void Resume() 
 ```  
   
 ### SpriteAnimator Getters
 ```cs
 // The default animation (index 0 on Sprite Animations List) to be played
-public SpriteAnimation DefaultAnimation
+public SpriteAnimation DefaultAnimation;
 
 // The current animation being played
-public SpriteAnimation CurrentAnimation
+public SpriteAnimation CurrentAnimation;
 
 // True if the current animation being played
-public bool Playing
+public bool Playing;
 
 // True if the current animation is paused
-public bool Paused
+public bool Paused;
 
 // Current frame being played
-public int CurrentFrame
+public int CurrentFrame;
 
 // True if the last frame of the current animation is being played
-public bool IsLastFrame 
+public bool IsLastFrame;
 ```
   
 ### SpriteAnimator Events
