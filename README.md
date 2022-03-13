@@ -17,10 +17,21 @@
 ## Useful codes
 ### Functions
 ```cs
-SpriteAnimator.Play() //Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class.  
-SpriteAnimator.PlayIfNotPlaying() //Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class.  
-SpriteAnimator.Pause() //Pause the current animation.  
-SpriteAnimator.Resume() //Resumes the current animation.
+//Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
+SpriteAnimator.Play()
+SpriteAnimator.Play(string animationName)
+SpriteAnimator.Play(SpriteAnimation animation)
+
+//Play the animation only if it's not already being played (use it on Update functions), you can pass a animation name or a spriteanimation class
+SpriteAnimator.PlayIfNotPlaying()
+SpriteAnimator.PlayIfNotPlaying(string animationName)
+SpriteAnimator.PlayIfNotPlaying(SpriteAnimation animation)
+
+//Pause the current animation
+SpriteAnimator.Pause()
+
+//Resumes the current animation.
+SpriteAnimator.Resume() 
 ```  
   
 ### Getters
