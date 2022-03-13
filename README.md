@@ -35,5 +35,3 @@ SpriteAnimator.AnimationPlayed = Called every time a animation is played (args =
 SpriteAnimator.AnimationPaused = Called every time a animation is paused (args = SpriteAnimation).  
 SpriteAnimator.AnimationEnded = Called every time a animation is ended (args = SpriteAnimation).  
 SpriteAnimator.AnimationEventCalled = Called every time a Animation Event is called (args = string).  
-  
-Now you can rename separator like any other GameObject and change color on inspector  
