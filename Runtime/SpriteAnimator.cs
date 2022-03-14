@@ -105,7 +105,7 @@ namespace GabrielBigardi.SpriteAnimator
 
         public void PlayIfNotPlaying(SpriteAnimation animation)
         {
-            if (CurrentAnimation.name != name)
+            if (CurrentAnimation.name != animation.name)
             {
                 _state = SpriteAnimationState.Playing;
                 _spriteAnimationHelper.ChangeAnimation(animation);
