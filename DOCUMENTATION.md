@@ -1,4 +1,4 @@
-## Useful codes
+## Useful coding things
 ### SpriteAnimator Functions
 ```cs
 // Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a spriteanimation class
