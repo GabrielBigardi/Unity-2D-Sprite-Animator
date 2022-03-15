@@ -15,11 +15,11 @@
 * 2 - Drag it into your "Assets" folder.
   
 ## How to use
-1 - Right click on your "Assets" folder > Create > Sprite Animation  
-2 - Rename it as you like, add a name to the "Name" field and add/remove frames, select animation type and framerate.  
-3 - Add a Sprite Animator component to the object you wan't to add these animations.  
-4 - Add the previously created Sprite Animations from your assets folder to the "Sprite Animations" list in the Sprite Animator component.  
-5 - Select if you wan't to play the animation automatically or do it by code.  
+* 1 - Right click on your "Assets" folder > Create > Sprite Animation  
+* 2 - Rename it as you like, add a name to the "Name" field and add/remove frames, select animation type and framerate.  
+* 3 - Add a Sprite Animator component to the object you wan't to add these animations.  
+* 4 - Add the previously created Sprite Animations from your assets folder to the "Sprite Animations" list in the Sprite Animator component.  
+* 5 - Select if you wan't to play the animation automatically or do it by code.  
   
 ## Why to use
 ### Escaping Unity's Animator Hell
