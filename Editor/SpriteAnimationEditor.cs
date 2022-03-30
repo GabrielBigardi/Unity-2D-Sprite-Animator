@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEditorInternal;
 using UnityEditor;
+using GabrielBigardi.SpriteAnimator.Runtime;
 
-namespace GabrielBigardi.SpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Editor
 {
     [CustomEditor(typeof(SpriteAnimation))]
     [CanEditMultipleObjects]
-    public class SpriteAnimationEditor : Editor
+    public class SpriteAnimationEditor : UnityEditor.Editor
     {
         private SpriteAnimation SelectedSpriteAnimation => target as SpriteAnimation;
 

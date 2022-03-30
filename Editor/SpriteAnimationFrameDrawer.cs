@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using GabrielBigardi.SpriteAnimator.Runtime;
+using UnityEditor;
 using UnityEngine;
 
-namespace GabrielBigardi.SpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Editor
 {
     [CustomPropertyDrawer(typeof(SpriteAnimationFrame))]
     public class SpriteAnimationFrameDrawer : PropertyDrawer
