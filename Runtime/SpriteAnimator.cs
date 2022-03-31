@@ -16,6 +16,8 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
         public bool Paused => _state == SpriteAnimationState.Paused;
         public int CurrentFrame => _spriteAnimationHelper.GetCurrentFrame();
         public bool IsLastFrame => CurrentFrame == CurrentAnimation.Frames.Count - 1;
+		public float AnimationDurationMilisseconds => (1000f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
+        public float AnimationDurationSeconds => (1f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
 
         private SpriteRenderer _spriteRenderer;
         private SpriteAnimationHelper _spriteAnimationHelper;
@@ -60,6 +62,7 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
                         if (triggerAnimationEndedEvent)
                         {
                             AnimationEnded?.Invoke(CurrentAnimation);
+							triggerAnimationEndedEvent = false;
 
                             if (CurrentAnimation.SpriteAnimationType != SpriteAnimationType.Looping) return;
                         }
