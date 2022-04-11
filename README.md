@@ -1,6 +1,4 @@
-
-
-# 2D Sprite Animator
+# 2D Sprite Animator for Unity Engine
  Tired of the "Unity Animator Hell", want more performance and faster workflow ? You've gone into the right place, this is a project i've made to replace Unity Animator usage on 2D projects, it's more performatic, simple and easy to use.
 
 ## How to install
