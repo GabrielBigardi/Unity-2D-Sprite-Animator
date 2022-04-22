@@ -22,6 +22,9 @@ public void Pause() {}
 
 // Resumes the current animation.
 public void Resume() {}
+
+// Set spritesheet index (only for PaperDollSpriteAnimator)
+public void SetSpriteAnimationsIndex(int index) {}
 ```  
   
 ### SpriteAnimator Getters
