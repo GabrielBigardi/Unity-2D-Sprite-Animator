@@ -3,10 +3,10 @@
 
 ## How to install
 ### Package Manager (recommended)
-* 1 - Open the package manager (Window > Package Manager)  
-* 2 - Click on the plus icon and "Add package from git URL..."  
-* 3 - Enter https://github.com/GabrielBigardi/2D-Sprite-Animator.git and click "Add"  
-* 4 - Wait until the package manager finishes installing the package and recompiling  
+* 1 - Open the package manager (Window > Package Manager).  
+* 2 - Click on the plus icon and "Add package from git URL...".  
+* 3 - Enter https://github.com/GabrielBigardi/2D-Sprite-Animator.git and click "Add".  
+* 4 - Wait until the package manager finishes installing the package and recompiling.  
    
 ### Lazy way
 * 1 - Download this repository as ZIP or by cloning it.
@@ -33,10 +33,10 @@ For the benchmark i did a simple test on a empty URP project with 2D Rendering/L
 * Animator enabled: 85 FPS.
   
 ## Where can i find further documentation about (codes and other things)?
-That's as easy as [clicking here](DOCUMENTATION.md).
+That's as easy as [clicking here](DOCUMENTATION.md)
   
 ## How do i contribute to this project?
-[Click here](CONTRIBUTING.md).
+[Click here](CONTRIBUTING.md)
   
 ## Contact
 **Discord**: *Gabriel Bigardi#2292*  
