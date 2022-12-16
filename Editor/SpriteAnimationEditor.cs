@@ -2,6 +2,8 @@
 using UnityEditorInternal;
 using UnityEditor;
 using GabrielBigardi.SpriteAnimator.Runtime;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace GabrielBigardi.SpriteAnimator.Editor
 {
@@ -9,6 +11,8 @@ namespace GabrielBigardi.SpriteAnimator.Editor
     [CanEditMultipleObjects]
     public class SpriteAnimationEditor : UnityEditor.Editor
     {
+        public Texture2D Texture;
+
         private SpriteAnimation SelectedSpriteAnimation => target as SpriteAnimation;
 
         private float timeTracker = 0;
@@ -53,6 +57,24 @@ namespace GabrielBigardi.SpriteAnimator.Editor
             EditorGUILayout.PropertyField(_fps);
             _framesReorderableList.DoLayoutList();
             EditorGUILayout.PropertyField(_spriteAnimationType);
+
+            GUILayout.Space(60);
+
+            Texture = (Texture2D)EditorGUILayout.ObjectField("Texture", Texture, typeof(Texture2D), false);
+            if (Texture != null && GUILayout.Button("Generate Sheet"))
+            {
+                Object[] assets = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(Texture));
+
+                Sprite[] sprites = assets.OfType<Sprite>().ToArray();
+                SelectedSpriteAnimation.Frames = new List<SpriteAnimationFrame>();
+                for (int i = 0; i < sprites.Length; i++)
+                {
+                    SelectedSpriteAnimation.Frames.Add(new());
+                    SelectedSpriteAnimation.Frames[i].Sprite = sprites[i];
+                }
+
+                EditorUtility.SetDirty(SelectedSpriteAnimation);
+            }
 
             serializedObject.ApplyModifiedProperties();
         }
