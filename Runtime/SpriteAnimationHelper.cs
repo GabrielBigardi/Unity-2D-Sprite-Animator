@@ -11,9 +11,7 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
         private int GetLoopingFrame() => (int)_animationTime % CurrentAnimation.Frames.Count;
         private int GetPlayOnceFrame() => Mathf.Min((int)_animationTime, CurrentAnimation.Frames.Count - 1);
 
-        public SpriteAnimationHelper()
-        {
-        }
+        public SpriteAnimationHelper() { }
 
         public SpriteAnimationHelper(SpriteAnimation spriteAnimation)
         {
@@ -71,5 +69,17 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
 
             return currentFrame;
         }
+
+        public void SetCurrentFrame(int frame)
+        {
+            if (frame < 0 || frame >= CurrentAnimation.Frames.Count)
+            {
+                Debug.LogError($"Invalid frame index {frame} for animation '{CurrentAnimation.name}' with {CurrentAnimation.Frames.Count} frames");
+                return;
+            }
+
+            _animationTime = frame;
+        }
+
     }
 }

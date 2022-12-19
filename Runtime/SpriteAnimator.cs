@@ -1,26 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 namespace GabrielBigardi.SpriteAnimator.Runtime
 {
     public class SpriteAnimator : MonoBehaviour
     {
-        [SerializeField] private List<SpriteAnimation> _spriteAnimations = new List<SpriteAnimation>();
+        [SerializeField] private List<SpriteAnimation> _spriteAnimations = new();
         [SerializeField] private bool _playAutomatically = true;
 
         public SpriteAnimation DefaultAnimation => _spriteAnimations.Count > 0 ? _spriteAnimations[0] : null;
-        public SpriteAnimation CurrentAnimation => _spriteAnimationHelper.CurrentAnimation;
+        public SpriteAnimation CurrentAnimation => SpriteAnimationHelper.CurrentAnimation;
 
         public bool Playing => _state == SpriteAnimationState.Playing;
         public bool Paused => _state == SpriteAnimationState.Paused;
-        public int CurrentFrame => _spriteAnimationHelper.GetCurrentFrame();
+        public int CurrentFrame => SpriteAnimationHelper.GetCurrentFrame();
         public bool IsLastFrame => CurrentFrame == CurrentAnimation.Frames.Count - 1;
-		public float AnimationDurationMilisseconds => (1000f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
-        public float AnimationDurationSeconds => (1f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
+        //public float AnimationDurationMilisseconds => (1000f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
+        //public float AnimationDurationSeconds => (1f / CurrentAnimation.FPS) * CurrentAnimation.Frames.Count;
 
         private SpriteRenderer _spriteRenderer;
-        private SpriteAnimationHelper _spriteAnimationHelper;
+        public SpriteAnimationHelper SpriteAnimationHelper { get; private set; }
         private SpriteAnimationState _state = SpriteAnimationState.Playing;
         private SpriteAnimationFrame _previousAnimationFrame;
 
@@ -34,10 +34,14 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
 
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            if (_spriteRenderer == null) _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (_spriteRenderer == null)
+            {
+                Debug.LogError("No Sprite Renderers were found on the object or the child objects");
+                return;
+            }
 
-            _spriteAnimationHelper = new SpriteAnimationHelper();
+            SpriteAnimationHelper = new SpriteAnimationHelper();
         }
 
         private void Start()
@@ -50,59 +54,53 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
 
         private void LateUpdate()
         {
-            if (Playing)
+            if (!Playing || _spriteRenderer == null)
+                return;
+
+            SpriteAnimationFrame currentFrame = SpriteAnimationHelper.UpdateAnimation(Time.deltaTime);
+
+            if (currentFrame == null)
+                return;
+
+            if (currentFrame == _previousAnimationFrame)
+                return;
+
+            Debug.Log(SpriteAnimationHelper.GetCurrentFrame());
+
+            if (triggerAnimationEndedEvent)
             {
-                SpriteAnimationFrame currentFrame = _spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
+                AnimationEnded?.Invoke(CurrentAnimation);
+                triggerAnimationEndedEvent = false;
 
-                //Change sprite only when animation frame changes, animationended event
-                if (currentFrame != null)
-                {
-                    if (currentFrame != _previousAnimationFrame)
-                    {
-                        if (triggerAnimationEndedEvent)
-                        {
-                            AnimationEnded?.Invoke(CurrentAnimation);
-							triggerAnimationEndedEvent = false;
-
-                            if (CurrentAnimation.SpriteAnimationType != SpriteAnimationType.Looping) return;
-                        }
-
-                        if ((CurrentFrame + 1) > (CurrentAnimation.Frames.Count - 1))
-                        {
-                            triggerAnimationEndedEvent = true;
-                        }
-
-                        _previousAnimationFrame = currentFrame;
-
-                        _spriteRenderer.sprite = currentFrame.Sprite;
-
-                        SpriteChanged?.Invoke();
-                        if(currentFrame.EventName != "") AnimationEventCalled?.Invoke(currentFrame.EventName);
-                    }
-                }
-
-                ////Change sprite every LateUpdate tick, but call sprite changed event based on frame change
-                //if(currentFrame != null)
-                //{
-                //    _spriteRenderer.sprite = currentFrame.Sprite;
-                //    if (currentFrame != _previousAnimationFrame)
-                //    {
-                //        _previousAnimationFrame = currentFrame;
-                //        SpriteChanged?.Invoke();
-                //    }
-                //}
-
-                //Change sprite only on frame change
-                //if (currentFrame != null && currentFrame != _previousAnimationFrame)
-                //{
-                //    _previousAnimationFrame = currentFrame;
-                //    _spriteRenderer.sprite = currentFrame.Sprite;
-                //}
+                if (CurrentAnimation.SpriteAnimationType != SpriteAnimationType.Looping) return;
             }
+
+            if ((CurrentFrame + 1) > (CurrentAnimation.Frames.Count - 1))
+            {
+                triggerAnimationEndedEvent = true;
+            }
+
+            _previousAnimationFrame = currentFrame;
+
+            _spriteRenderer.sprite = currentFrame.Sprite;
+
+            SpriteChanged?.Invoke();
+            if (currentFrame.EventName != "") AnimationEventCalled?.Invoke(currentFrame.EventName);
+        }
+
+        public bool HasAnimation(string name)
+        {
+            return _spriteAnimations.Exists(a => a.Name == name);
         }
 
         public void PlayIfNotPlaying(string name)
         {
+            if (!HasAnimation(name))
+            {
+                Debug.LogError($"Animation with name '{name}' not found");
+                return;
+            }
+
             PlayIfNotPlaying(GetAnimationByName(name));
         }
 
@@ -111,7 +109,7 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
             if (CurrentAnimation.name != animation.name)
             {
                 _state = SpriteAnimationState.Playing;
-                _spriteAnimationHelper.ChangeAnimation(animation);
+                SpriteAnimationHelper.ChangeAnimation(animation);
                 AnimationPlayed?.Invoke(animation);
 
                 triggerAnimationEndedEvent = false;
@@ -122,7 +120,7 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
         {
             if (CurrentAnimation == null)
             {
-                _spriteAnimationHelper.ChangeAnimation(DefaultAnimation);
+                SpriteAnimationHelper.ChangeAnimation(DefaultAnimation);
             }
 
             Play(CurrentAnimation);
@@ -130,18 +128,54 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
 
         public void Play(string name)
         {
+            if (!HasAnimation(name))
+            {
+                Debug.LogError($"Animation with name '{name}' not found");
+                return;
+            }
+
             Play(GetAnimationByName(name));
         }
 
         public void Play(SpriteAnimation animation)
         {
+            if (animation == null)
+            {
+                Debug.LogError("An null or invalid SpriteAnimation object was passed.");
+                return;
+            }
+
             _state = SpriteAnimationState.Playing;
-            _spriteAnimationHelper.ChangeAnimation(animation);
+            SpriteAnimationHelper.ChangeAnimation(animation);
             AnimationPlayed?.Invoke(animation);
 
-            //_previousFrame = 0;
-            //_currentAnimationLoops = 0;
             triggerAnimationEndedEvent = false;
+        }
+
+        public void Play(SpriteAnimation animation, int startFrame = 0)
+        {
+            if (animation == null)
+            {
+                Debug.LogError("An null or invalid SpriteAnimation object was passed.");
+                return;
+            }
+
+            if (CurrentAnimation == null || CurrentAnimation.name != animation.name)
+            {
+                _state = SpriteAnimationState.Playing;
+                SpriteAnimationHelper.ChangeAnimation(animation);
+                AnimationPlayed?.Invoke(animation);
+
+                triggerAnimationEndedEvent = false;
+            }
+
+            _state = SpriteAnimationState.Playing;
+            SpriteAnimationHelper.SetCurrentFrame(startFrame);
+        }
+
+        public void Play(string name, int startFrame = 0)
+        {
+            Play(GetAnimationByName(name), startFrame);
         }
 
         public void Pause()
@@ -165,6 +199,7 @@ namespace GabrielBigardi.SpriteAnimator.Runtime
                 }
             }
 
+            Debug.LogError($"Can't find animation named {name}");
             return null;
         }
     }
