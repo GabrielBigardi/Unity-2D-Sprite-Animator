@@ -2,11 +2,9 @@
  Tired of the "Unity Animator Hell", want more performance and faster workflow ? You've gone into the right place, this is a project i've made to replace Unity Animator usage on 2D projects, it's more performatic, simple and easy to use.
 
 ## How to install
-### Package Manager (recommended)
-* 1 - Open the package manager (Window > Package Manager).  
-* 2 - Click on the plus icon and "Add package from git URL...".  
-* 3 - Enter https://github.com/GabrielBigardi/2D-Sprite-Animator.git and click "Add".  
-* 4 - Wait until the package manager finishes installing the package and recompiling.  
+### Package Importing (recommended)
+* 1 - Download the [latest release](https://github.com/GabrielBigardi/Unity-2D-Sprite-Animator/releases).
+* 2 - Double-click the .unitypackage or import it.
    
 ### Lazy way
 * 1 - Download this repository as ZIP or by cloning it.
