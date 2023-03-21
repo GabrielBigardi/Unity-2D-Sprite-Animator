@@ -1,21 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
-namespace GabrielBigardi.SpriteAnimator.Runtime
+namespace GabrielBigardi.SpriteAnimator
 {
-    [CreateAssetMenu]
-    [Serializable]
-    public class SpriteAnimation : ScriptableObject
+    public enum SpriteAnimationType
     {
-        public string animationName = "animation";
+        Looping = 0,
+        PlayOnce = 1
+    }
 
+    [Serializable]
+    public class SpriteAnimation
+    {
         public string Name;
-
         public int FPS;
-
-        public List<SpriteAnimationFrame> Frames;
-
+        public List<Sprite> Frames;
         public SpriteAnimationType SpriteAnimationType;
     }
 }
