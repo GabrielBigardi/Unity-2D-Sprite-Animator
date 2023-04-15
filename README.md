@@ -40,3 +40,6 @@ That's as easy as [clicking here](DOCUMENTATION.md)
 **Discord**: *Gabriel Bigardi#2292*  
 **Twitter**: *@BigardiGabriel*  
 **Email**: *gabrielbigardi@hotmail.com*  
+
+## License
+Unity-2D-Sprite-Animator is licensed under the MIT license, so you can comfortably use it in commercial applications.
