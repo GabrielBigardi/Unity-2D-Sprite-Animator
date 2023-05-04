@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Linq;
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
@@ -27,7 +28,12 @@ namespace GabrielBigardi.SpriteAnimator
         {
             base.OnEnable();
 
-            _transparentCheckboardTexture = Resources.Load<Texture2D>("Sprite Animator/checkered");
+            string scriptPath = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
+            string scriptFolder = Path.GetDirectoryName(scriptPath);
+            string spritesPath = Path.Combine("Sprites");
+            string checkeredTexturePath = Path.Combine(scriptFolder, spritesPath, "checkered.png");
+            _transparentCheckboardTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(checkeredTexturePath);
+
             if (_spriteAnimationObject != null)
             {
                 _serializedObject = new SerializedObject(_spriteAnimationObject);
