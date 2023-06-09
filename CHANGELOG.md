@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2023-06-09
+### Fixed
+- Problem with animation preview stretching/mis-positioning sprites.
+
+## [2.0.1] - 2023-05-04
+### Fixed
+- Null Reference error due to a try to load an checkered texture on Resources folder that was not previously included in the Sprite Animator.
+
 ## [2.0.0] - 2023-03-21
 ### Added
 - "Editor Coroutines" package is needed for the preview window to work properly.
