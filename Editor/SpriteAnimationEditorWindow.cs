@@ -211,34 +211,17 @@ namespace GabrielBigardi.SpriteAnimator
 
                 if (sprite != null)
                 {
-                    Texture t = sprite.texture;
-                    Rect tr = sprite.textureRect;
-                    Rect r2 = new Rect(tr.x / t.width, tr.y / t.height, tr.width / t.width, tr.height / t.height);
-                    Rect r = new Rect(boxRect.x + boxRect.width / 2f - (64 / 2f), boxRect.y, 64, 64);
-                    Rect previewRect = r;
-                    float targetAspectRatio = tr.width / tr.height;
-                    float windowAspectRatio = r.width / r.height;
-                    float scaleHeight = windowAspectRatio / targetAspectRatio;
-                    if (scaleHeight < 1f)
-                    {
-                        previewRect.width = r.width;
-                        previewRect.height = scaleHeight * r.height;
-                        previewRect.x = r.x;
-                        previewRect.y = r.y + (r.height - previewRect.height) / 2f;
-                    }
-                    else
-                    {
-                        float scaleWidth = 1f / scaleHeight;
-
-                        previewRect.width = scaleWidth * r.width;
-                        previewRect.height = r.height;
-                        previewRect.x = r.x + (r.width - previewRect.width) / 2f;
-                        previewRect.y = r.y;
-                    }
-                    GUI.DrawTextureWithTexCoords(textureRect, t, r2, true);
+                    GUIDrawSprite(textureRect, sprite);
                 }
             }
             EditorGUILayout.EndVertical();
+        }
+
+        public void GUIDrawSprite(Rect rect, Sprite sprite)
+        {
+            Rect spriteRect = sprite.rect;
+            Texture2D tex = sprite.texture;
+            GUI.DrawTextureWithTexCoords(rect, tex, new Rect(spriteRect.x / tex.width, spriteRect.y / tex.height, spriteRect.width / tex.width, spriteRect.height / tex.height));
         }
 
         protected override void OnElementClicked()
