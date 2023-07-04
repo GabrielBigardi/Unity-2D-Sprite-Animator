@@ -5,13 +5,14 @@ namespace GabrielBigardi.SpriteAnimator
 {
     public class SpriteAnimator : MonoBehaviour
     {
-        [SerializeField] private bool _playAutomatically = true;
+        [SerializeField] private bool _playAutomatically = false;
         [SerializeField] private SpriteAnimationObject _spriteAnimationObject;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         private SpriteAnimation _currentAnimation;
-        private float _animationTime = 0.0f;
+        private float _animationTime = 0f;
         private bool _paused = false;
+        private bool _animationCompleted = false;
 
         public bool HasAnimation(string name) => _spriteAnimationObject.SpriteAnimations.Exists(a => a.Name == name);
         public SpriteAnimation DefaultAnimation => _spriteAnimationObject.SpriteAnimations.Count > 0 ? _spriteAnimationObject.SpriteAnimations[0] : null;
@@ -130,6 +131,7 @@ namespace GabrielBigardi.SpriteAnimator
 
         private void ChangeAnimation(SpriteAnimation spriteAnimation)
         {
+            _animationCompleted = false;
             _animationTime = 0f;
             OnAnimationComplete = null;
             _currentAnimation = spriteAnimation;
@@ -139,14 +141,19 @@ namespace GabrielBigardi.SpriteAnimator
         {
             if (_currentAnimation != null)
             {
-                _animationTime += deltaTime * _currentAnimation.FPS;
-
-                var frameDuration = 1f / _currentAnimation.FPS;
-                var animationDuration = (frameDuration * (_currentAnimation.Frames.Count)) * 10;
-                if (_animationTime >= animationDuration)
+                if (!_animationCompleted)
                 {
-                    OnAnimationComplete?.Invoke();
-                    OnAnimationComplete = null;
+                    _animationTime += deltaTime * _currentAnimation.FPS;
+
+                    var frameDuration = 1f / _currentAnimation.FPS;
+                    var animationDuration = frameDuration * (_currentAnimation.Frames.Count);
+                    if (_animationTime >= (animationDuration * _currentAnimation.FPS))
+                    {
+                        OnAnimationComplete?.Invoke();
+
+                        _animationTime = _currentAnimation.SpriteAnimationType == SpriteAnimationType.Looping ? 0f : _currentAnimation.Frames.Count;
+                        _animationCompleted = _currentAnimation.SpriteAnimationType == SpriteAnimationType.Looping ? false : true;
+                    }
                 }
 
                 return GetAnimationFrame();
@@ -198,6 +205,11 @@ namespace GabrielBigardi.SpriteAnimator
             }
 
             _animationTime = frame;
+        }
+
+        public void ChangeAnimationObject(SpriteAnimationObject spriteAnimationObject)
+        {
+            _spriteAnimationObject = spriteAnimationObject;
         }
     }
 }

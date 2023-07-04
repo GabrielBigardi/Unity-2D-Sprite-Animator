@@ -13,9 +13,9 @@ namespace GabrielBigardi.SpriteAnimator
     [Serializable]
     public class SpriteAnimation
     {
-        public string Name;
-        public int FPS;
-        public List<Sprite> Frames;
-        public SpriteAnimationType SpriteAnimationType;
+        public string Name = "";
+        public int FPS = 0;
+        public List<Sprite> Frames = new();
+        public SpriteAnimationType SpriteAnimationType = SpriteAnimationType.Looping;
     }
 }
