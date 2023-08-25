@@ -63,7 +63,7 @@ namespace GabrielBigardi.SpriteAnimator
 
         public SpriteAnimator Play(SpriteAnimation spriteAnimation, int startFrame = 0)
         {
-            if (spriteAnimation == null)
+            if (spriteAnimation == null || spriteAnimation.Frames.Count <= 0)
             {
                 Debug.LogError("An null or invalid SpriteAnimation object was passed.");
                 return null;
