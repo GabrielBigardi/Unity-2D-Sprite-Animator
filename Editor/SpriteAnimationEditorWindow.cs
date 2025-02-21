@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.IO;
 using System.Linq;
@@ -231,3 +232,4 @@ namespace GabrielBigardi.SpriteAnimator
         }
     }
 }
+#endif

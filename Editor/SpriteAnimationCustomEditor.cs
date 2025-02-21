@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -30,5 +31,5 @@ namespace GabrielBigardi.SpriteAnimator
             }
         }
     }
-
 }
+#endif
