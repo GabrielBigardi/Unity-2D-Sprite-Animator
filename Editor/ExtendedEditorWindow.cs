@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -142,3 +143,5 @@ namespace GabrielBigardi.SpriteAnimator
         protected virtual void OnElementClicked() { }
     }
 }
+
+#endif

@@ -1,13 +1,10 @@
 {
   "name": "com.gabrielbigardi.spriteanimator",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "displayName": "2D Sprite Animator",
   "description": "Performatic, simple and easy animator for 2D games",
-  "unity": "2020.3",
-  "unityRelease": "26f1",
-  "dependencies": {
-    "com.unity.editorcoroutines": "1.0.0"
-  },
+  "unity": "6000.0",
+  "unityRelease": "23f1",
   "keywords": [
     "sprite",
     "animator",
