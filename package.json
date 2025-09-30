@@ -1,6 +1,6 @@
 {
   "name": "com.gabrielbigardi.spriteanimator",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "displayName": "2D Sprite Animator",
   "description": "Performatic, simple and easy animator for 2D games",
   "unity": "6000.0",
