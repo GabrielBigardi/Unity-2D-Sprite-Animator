@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Sprites;
 using UnityEngine;
 
 namespace GabrielBigardi.SpriteAnimator
@@ -341,9 +342,9 @@ namespace GabrielBigardi.SpriteAnimator
 
         public void GUIDrawSprite(Rect previewRect, Sprite sprite)
         {
-            // Get the sprite's rect and texture
+            // Get the sprite's original rect and texture
             Rect spriteRect = sprite.rect;
-            Texture2D texture = sprite.texture;
+            Texture2D texture = SpriteUtility.GetSpriteTexture(sprite, false);
 
             // Calculate the aspect ratio of the sprite
             float spriteAspectRatio = spriteRect.width / spriteRect.height;
