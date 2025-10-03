@@ -151,8 +151,9 @@ namespace GabrielBigardi.SpriteAnimator
                 return null;
             }
 
-            if (_currentAnimation.Name == spriteAnimation.Name)
+            if (_currentAnimation != null && _currentAnimation.Name == spriteAnimation.Name)
                 return null;
+                
             Resume();
             ChangeAnimation(spriteAnimation);
             SetCurrentFrame(startFrame);
