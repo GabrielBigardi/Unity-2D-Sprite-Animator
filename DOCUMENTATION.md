@@ -6,8 +6,32 @@
 * 5 - Select if you wan't to play the animation automatically (it will play the first on the list) or do it by code.  
   
 ## Useful coding things
-### SpriteAnimator Functions
+### SpriteAnimator Functions and Variables
 ```cs
+// The Current SpriteAnimationObject being used
+public SpriteAnimationObject SpriteAnimationObject
+
+// If the animation is completed or not
+public bool AnimationCompleted
+
+// Check if the current SpriteAnimationObject has a SpriteAnimation with that name
+public bool HasAnimation(string name)
+
+// The current SpriteAnimation being played
+public SpriteAnimation CurrentAnimation
+
+// The default animation for this SpriteAnimator (0 or null)
+public SpriteAnimation DefaultAnimation
+
+// The current frame of the SpriteAnimation being played
+public int CurrentFrame
+
+// Event called when the frame is changed
+public event Action OnAnimationFrameChanged;
+
+// Event called when the animation is completed
+public event Action OnAnimationComplete;
+
 // Play the animation (use it when your code play it only once, like State-Machines do), you can pass a animation name or a SpriteAnimation and start frame, fluent interface
 public SpriteAnimator Play(string name, int startFrame = 0) {}
 public SpriteAnimator Play(SpriteAnimation spriteAnimation, int startFrame = 0) {}
@@ -22,24 +46,24 @@ public void Pause() {}
 // Resumes the current animation.
 public void Resume() {}
 
-// Set the current frame of the animation
-public void SetCurrentFrame(int frame) {}
+// Set the current sprite based on that frame
+public void SetSpriteByFrame(int frame)
 
-// Set the Action to run when a animation completes, fluent interface
-public SpriteAnimator OnComplete(Action onAnimationComplete) {}
+// Sets the animation complete callback, required to be called after the animation is played
+public SpriteAnimator SetOnComplete(Action onAnimationComplete)
+
+// Sets the animation frame changed callback, required to call after the animation is played
+public SpriteAnimator SetOnFrameChanged(Action onFrameChanged)
+
+// Sets the events for a specific animation frame, recommended to be called before the animation is played to avoid missing first frame animation
+public void SetAnimationFrameEvents(string animationName, Dictionary<int, List<Action>> frameEvents)
+
+// Sets the current animation frame
+public void SetCurrentFrame(int frame)
+
+// Sets the current animation time (just like SetCurrentFrame, but more accurate)
+public void SetCurrentAnimationTime(float time) => _animationTime = time;
+
+// Changes the sprite animation object
+public void ChangeAnimationObject(SpriteAnimationObject spriteAnimationObject) => _spriteAnimationObject = spriteAnimationObject;
 ```  
-  
-### SpriteAnimator Getters
-```cs
-// Returns true if has the animation named "name"
-public bool HasAnimation(string name) {}
-
-// The default animation (index 0 on Sprite Animations Object) to be played
-public SpriteAnimation DefaultAnimation;
-```
-  
-### SpriteAnimator Events
-```cs
-// Called every time a animation completes for both "Looping" and "Play Once"
-public event action OnAnimationComplete;
-```
