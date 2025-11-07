@@ -285,10 +285,10 @@ namespace GabrielBigardi.SpriteAnimator
                     var animationDuration = frameDuration * (_currentAnimation.Frames.Count);
                     if (_animationTime >= (animationDuration * _currentAnimation.FPS))
                     {
-                        OnAnimationComplete?.Invoke();
-
                         _animationTime = _currentAnimation.SpriteAnimationType == SpriteAnimationType.Looping ? 0f : _currentAnimation.Frames.Count;
                         _animationCompleted = _currentAnimation.SpriteAnimationType == SpriteAnimationType.Looping ? false : true;
+
+                        OnAnimationComplete?.Invoke();
                     }
                 }
 
