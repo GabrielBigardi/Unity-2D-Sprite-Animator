@@ -52,7 +52,7 @@ namespace GabrielBigardi.SpriteAnimator
 
             string scriptPath = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
             string scriptFolder = Path.GetDirectoryName(scriptPath);
-            string spritesPath = Path.Combine("Sprites");
+            string spritesPath = Path.Combine("Icons");
 
             string checkeredTexturePath = Path.Combine(scriptFolder, spritesPath, "checkered.png");
             _transparentCheckboardTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(checkeredTexturePath);

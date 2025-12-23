@@ -22,7 +22,7 @@ namespace GabrielBigardi.SpriteAnimator
         {
             string scriptPath = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(this));
             string scriptFolder = Path.GetDirectoryName(scriptPath);
-            string spritesPath = Path.Combine("Sprites");
+            string spritesPath = Path.Combine("Icons");
 
             string buttonUpFullPath = Path.Combine(scriptFolder, spritesPath, "buttonuptexture.png");
             _buttonUpTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(buttonUpFullPath);
