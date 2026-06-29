@@ -7,16 +7,16 @@ namespace GabrielBigardi.SpriteAnimator
 {
     public class AssetHandler
     {
-        [OnOpenAsset()]
-        public static bool OpenEditor(int instanceId, int line)
+        [OnOpenAsset]
+        public static bool OpenEditor(EntityId entityId, int line)
         {
-            SpriteAnimationObject obj = EditorUtility.InstanceIDToObject(instanceId) as SpriteAnimationObject;
-            if (obj != null)
-            {
-                SpriteAnimationEditorWindow.Open(obj);
-                return true;
-            }
-            return false;
+            var obj = EditorUtility.EntityIdToObject(entityId) as SpriteAnimationObject;
+            
+            if (obj == null)
+                return false;
+            
+            SpriteAnimationEditorWindow.Open(obj);
+            return true;
         }
     }
 
